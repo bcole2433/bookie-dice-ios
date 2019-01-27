@@ -215,19 +215,42 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrc-9h-gVG">
+                                                    <rect key="frame" x="249" y="68" width="120" height="21"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="ooc-GP-xbp"/>
+                                                        <constraint firstAttribute="width" constant="120" id="pkU-zb-vCl"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal" title="Final Value">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put in the actual value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94U-U8-ccS">
+                                                    <rect key="frame" x="255.5" y="53" width="107" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="vrc-9h-gVG" secondAttribute="trailing" constant="6" id="0R3-bm-cov"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SdU-hR-VTx" secondAttribute="bottom" constant="8" id="3Bp-09-ery"/>
                                                 <constraint firstItem="SdU-hR-VTx" firstAttribute="top" secondItem="2iS-zv-Fn4" secondAttribute="bottom" constant="6" id="EoX-mZ-8XW"/>
+                                                <constraint firstItem="vrc-9h-gVG" firstAttribute="top" secondItem="94U-U8-ccS" secondAttribute="bottom" constant="3" id="KSR-o6-AZZ"/>
                                                 <constraint firstItem="SdU-hR-VTx" firstAttribute="leading" secondItem="KUg-Bh-shK" secondAttribute="leading" constant="15" id="OE5-JO-qE0"/>
                                                 <constraint firstItem="2iS-zv-Fn4" firstAttribute="leading" secondItem="KUg-Bh-shK" secondAttribute="leading" constant="15" id="OQe-pz-LgH"/>
+                                                <constraint firstAttribute="bottom" secondItem="vrc-9h-gVG" secondAttribute="bottom" constant="10.5" id="c80-Uj-l28"/>
                                                 <constraint firstAttribute="trailing" secondItem="2iS-zv-Fn4" secondAttribute="trailing" constant="15" id="hOB-bu-iej"/>
+                                                <constraint firstItem="94U-U8-ccS" firstAttribute="centerX" secondItem="vrc-9h-gVG" secondAttribute="centerX" id="hl5-ev-VDS"/>
                                                 <constraint firstItem="2iS-zv-Fn4" firstAttribute="top" secondItem="KUg-Bh-shK" secondAttribute="top" constant="11" id="mxz-Ka-Vlf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="betName" destination="2iS-zv-Fn4" id="6CB-sc-aMO"/>
                                             <outlet property="betValue" destination="SdU-hR-VTx" id="reR-pn-zAv"/>
+                                            <outlet property="finalButton" destination="vrc-9h-gVG" id="Qgb-HP-M3l"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -292,11 +315,107 @@
                         <outlet property="bookieUsername" destination="IAS-hY-lEJ" id="qJK-zW-5HH"/>
                         <outlet property="myBetsTableView" destination="uT3-ER-8xi" id="Hhm-3H-Dpj"/>
                         <outlet property="segmentedControl" destination="8lF-Mu-d0k" id="XLh-TA-pnk"/>
+                        <segue destination="Cgl-5T-Wic" kind="show" identifier="toFinalBetValue" id="E99-ge-mmc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MfY-UX-adg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2784.8000000000002" y="123.68815592203899"/>
+        </scene>
+        <!--Submit Bet View Controller-->
+        <scene sceneID="cYh-47-aPO">
+            <objects>
+                <viewController id="Cgl-5T-Wic" customClass="SubmitBetViewController" customModule="Bookie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tD4-Bk-gw9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submit the final bet value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frG-ZA-5V3">
+                                <rect key="frame" x="16" y="84" width="238.5" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEH-bs-iMu">
+                                <rect key="frame" x="16" y="108" width="343" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="77" id="277-Yc-HrL"/>
+                                </constraints>
+                                <string key="text">Input the over / under value that actually happened. Don't lie cause Bookie Dice's Riverboat Gamblahs will find you, and you don't want the Rivewrboat Gamblahs to find you.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bet Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpy-ed-t1h">
+                                <rect key="frame" x="16" y="193" width="343" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Over / Under" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2O-lL-rXn">
+                                <rect key="frame" x="16" y="223" width="93" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Actual Value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AqD-Jp-B7O">
+                                <rect key="frame" x="150.5" y="255" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bB7-1p-DFN">
+                                <rect key="frame" x="245" y="295" width="120" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Submit Value">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitButtonTapped:" destination="Cgl-5T-Wic" eventType="touchUpInside" id="c50-Ne-GoB"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exe-hf-zHJ">
+                                <rect key="frame" x="255" y="250" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5gk-wo-AOX"/>
+                                    <constraint firstAttribute="width" constant="100" id="v3h-lK-V6d"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="frG-ZA-5V3" firstAttribute="leading" secondItem="0Xv-AV-icd" secondAttribute="leading" constant="16" id="2Hv-ma-05j"/>
+                            <constraint firstItem="B2O-lL-rXn" firstAttribute="top" secondItem="tpy-ed-t1h" secondAttribute="bottom" constant="8.5" id="GNk-Zr-qXY"/>
+                            <constraint firstItem="exe-hf-zHJ" firstAttribute="top" secondItem="B2O-lL-rXn" secondAttribute="bottom" constant="8" id="M0I-Ap-5a1"/>
+                            <constraint firstItem="AqD-Jp-B7O" firstAttribute="centerY" secondItem="exe-hf-zHJ" secondAttribute="centerY" id="NTe-di-xra"/>
+                            <constraint firstItem="exe-hf-zHJ" firstAttribute="centerX" secondItem="bB7-1p-DFN" secondAttribute="centerX" id="VIF-kb-pfX"/>
+                            <constraint firstItem="ZEH-bs-iMu" firstAttribute="leading" secondItem="0Xv-AV-icd" secondAttribute="leading" constant="16" id="aYP-e9-Oh9"/>
+                            <constraint firstItem="tpy-ed-t1h" firstAttribute="top" secondItem="ZEH-bs-iMu" secondAttribute="bottom" constant="8" id="bbU-4G-vRS"/>
+                            <constraint firstItem="frG-ZA-5V3" firstAttribute="top" secondItem="0Xv-AV-icd" secondAttribute="top" constant="20" id="g9f-GH-NeT"/>
+                            <constraint firstItem="exe-hf-zHJ" firstAttribute="leading" secondItem="AqD-Jp-B7O" secondAttribute="trailing" constant="4.5" id="kAg-o0-GlV"/>
+                            <constraint firstItem="0Xv-AV-icd" firstAttribute="trailing" secondItem="tpy-ed-t1h" secondAttribute="trailing" constant="16" id="ljH-eC-mwr"/>
+                            <constraint firstItem="0Xv-AV-icd" firstAttribute="trailing" secondItem="ZEH-bs-iMu" secondAttribute="trailing" constant="16" id="mjf-VW-u1l"/>
+                            <constraint firstItem="0Xv-AV-icd" firstAttribute="trailing" secondItem="bB7-1p-DFN" secondAttribute="trailing" constant="10" id="pjd-84-jFg"/>
+                            <constraint firstItem="bB7-1p-DFN" firstAttribute="top" secondItem="exe-hf-zHJ" secondAttribute="bottom" constant="14.5" id="qKt-5L-exG"/>
+                            <constraint firstItem="B2O-lL-rXn" firstAttribute="leading" secondItem="0Xv-AV-icd" secondAttribute="leading" constant="16" id="s1B-wR-DjG"/>
+                            <constraint firstItem="tpy-ed-t1h" firstAttribute="leading" secondItem="0Xv-AV-icd" secondAttribute="leading" constant="16" id="uy6-OS-QcJ"/>
+                            <constraint firstItem="ZEH-bs-iMu" firstAttribute="top" secondItem="frG-ZA-5V3" secondAttribute="bottom" id="zFU-Ii-REV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0Xv-AV-icd"/>
+                    </view>
+                    <connections>
+                        <outlet property="actualValueField" destination="exe-hf-zHJ" id="U4i-d7-1Gv"/>
+                        <outlet property="betName" destination="tpy-ed-t1h" id="A43-kE-d0U"/>
+                        <outlet property="betValue" destination="B2O-lL-rXn" id="qb5-sF-yoS"/>
+                        <outlet property="submitButton" destination="bB7-1p-DFN" id="JfP-mY-5oH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yXG-4f-330" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3781.5999999999999" y="-27.436281859070466"/>
         </scene>
         <!--Bets List View Controller-->
         <scene sceneID="VA2-7q-6mQ">

@@ -216,4 +216,12 @@ class FirebaseHelper {
             }
         }
     }
+    
+    func submitFinalValue(betName: String, finalValue: Double) {
+        
+        let betRef = db.collection("Bets").document(betName)
+        let data = ["finalValue" : finalValue]
+        betRef.updateData(data)
+        
+    }
 }

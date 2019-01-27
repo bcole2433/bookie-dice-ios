@@ -12,7 +12,6 @@
 		538A9A60DF10E2A06FC6C9BB /* Pods_BookieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F61393F9C1A513653B95EF /* Pods_BookieTests.framework */; };
 		BD538A3021E8FFAB007EDA0F /* ProtectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD538A2F21E8FFAB007EDA0F /* ProtectedViewController.swift */; };
 		BD538A3421E91F7F007EDA0F /* BetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD538A3321E91F7F007EDA0F /* BetView.swift */; };
-		BD538A3621E91FA5007EDA0F /* CreateBet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD538A3521E91FA5007EDA0F /* CreateBet.swift */; };
 		BD538A3821E929E1007EDA0F /* OverUnderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD538A3721E929E1007EDA0F /* OverUnderViewController.swift */; };
 		BD538A3A21E930ED007EDA0F /* BetsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD538A3921E930ED007EDA0F /* BetsListViewController.swift */; };
 		BD538A3C21E9349B007EDA0F /* BetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD538A3B21E9349B007EDA0F /* BetModel.swift */; };
@@ -20,6 +19,7 @@
 		BD6A999B21FD35FD00903409 /* MyBetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6A999A21FD35FD00903409 /* MyBetsView.swift */; };
 		BD6A999D21FD3A5400903409 /* PlacedBetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6A999C21FD3A5400903409 /* PlacedBetsCell.swift */; };
 		BD6A999F21FD3A7200903409 /* CreatedBetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6A999E21FD3A7200903409 /* CreatedBetsCell.swift */; };
+		BD73E49021FE618600B7D42D /* SubmitBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD73E48F21FE618500B7D42D /* SubmitBetViewController.swift */; };
 		BD80121121F3501E0087AC41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD80121021F3501D0087AC41 /* GoogleService-Info.plist */; };
 		BD80121221F3501E0087AC41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD80121021F3501D0087AC41 /* GoogleService-Info.plist */; };
 		BD80121321F3501E0087AC41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD80121021F3501D0087AC41 /* GoogleService-Info.plist */; };
@@ -61,7 +61,6 @@
 		B5F61393F9C1A513653B95EF /* Pods_BookieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD538A2F21E8FFAB007EDA0F /* ProtectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedViewController.swift; sourceTree = "<group>"; };
 		BD538A3321E91F7F007EDA0F /* BetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetView.swift; sourceTree = "<group>"; };
-		BD538A3521E91FA5007EDA0F /* CreateBet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBet.swift; sourceTree = "<group>"; };
 		BD538A3721E929E1007EDA0F /* OverUnderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverUnderViewController.swift; sourceTree = "<group>"; };
 		BD538A3921E930ED007EDA0F /* BetsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsListViewController.swift; sourceTree = "<group>"; };
 		BD538A3B21E9349B007EDA0F /* BetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetModel.swift; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		BD6A999A21FD35FD00903409 /* MyBetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBetsView.swift; sourceTree = "<group>"; };
 		BD6A999C21FD3A5400903409 /* PlacedBetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacedBetsCell.swift; sourceTree = "<group>"; };
 		BD6A999E21FD3A7200903409 /* CreatedBetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedBetsCell.swift; sourceTree = "<group>"; };
+		BD73E48F21FE618500B7D42D /* SubmitBetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitBetViewController.swift; sourceTree = "<group>"; };
 		BD80121021F3501D0087AC41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BDB4FC3121E8FB9F00B613B8 /* Bookie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB4FC3421E8FB9F00B613B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,7 +133,6 @@
 				BD538A3921E930ED007EDA0F /* BetsListViewController.swift */,
 				BDE170D021E93A7000BF17ED /* BetsListTableCell.swift */,
 				BD538A3321E91F7F007EDA0F /* BetView.swift */,
-				BD538A3521E91FA5007EDA0F /* CreateBet.swift */,
 				BD538A3721E929E1007EDA0F /* OverUnderViewController.swift */,
 			);
 			path = Bets;
@@ -145,6 +144,7 @@
 				BD6A999A21FD35FD00903409 /* MyBetsView.swift */,
 				BD6A999C21FD3A5400903409 /* PlacedBetsCell.swift */,
 				BD6A999E21FD3A7200903409 /* CreatedBetsCell.swift */,
+				BD73E48F21FE618500B7D42D /* SubmitBetViewController.swift */,
 			);
 			path = "My Bets";
 			sourceTree = "<group>";
@@ -488,6 +488,7 @@
 				BD538A3821E929E1007EDA0F /* OverUnderViewController.swift in Sources */,
 				BDB4FC3521E8FB9F00B613B8 /* AppDelegate.swift in Sources */,
 				BD538A3A21E930ED007EDA0F /* BetsListViewController.swift in Sources */,
+				BD73E49021FE618600B7D42D /* SubmitBetViewController.swift in Sources */,
 				BD538A4021E9373E007EDA0F /* FirebaseHelper.swift in Sources */,
 				BD538A3421E91F7F007EDA0F /* BetView.swift in Sources */,
 				BD538A3C21E9349B007EDA0F /* BetModel.swift in Sources */,
@@ -496,7 +497,6 @@
 				BDE170D121E93A7000BF17ED /* BetsListTableCell.swift in Sources */,
 				BD6A999F21FD3A7200903409 /* CreatedBetsCell.swift in Sources */,
 				BD6A999B21FD35FD00903409 /* MyBetsView.swift in Sources */,
-				BD538A3621E91FA5007EDA0F /* CreateBet.swift in Sources */,
 				BD6A999D21FD3A5400903409 /* PlacedBetsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

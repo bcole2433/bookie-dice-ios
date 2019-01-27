@@ -19,6 +19,7 @@ class MyBetsView: UIViewController {
     
     var placedBets : [PlacedBet] = []
     var createdBets : [CreatedBet] = []
+    var selectedBet : CreatedBet?
     
     let userID = Auth.auth().currentUser?.uid
     let helper = SocialHelper.sharedSocialHelper()
@@ -84,6 +85,12 @@ class MyBetsView: UIViewController {
                 }
             }
         }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? SubmitBetViewController {
+            destination.bet = self.selectedBet
+        }
+    }
     @IBAction func indexChanged(_ sender: Any) {
         
         DispatchQueue.main.async {
@@ -151,6 +158,21 @@ extension MyBetsView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch(self.segmentedControl.selectedSegmentIndex){
+        case 0:
+            // MARK : - PLACED BETS
+            print("On placedBets")
+            
+        case 1:
+            // MARK : - Created BETS
+            let cell = myBetsTableView.dequeueReusableCell(withIdentifier: "createdBets", for: indexPath) as? CreatedBetsCell
+            let bet = createdBets[indexPath.item]
+            self.selectedBet = bet
+            self.performSegue(withIdentifier: "toFinalBetValue", sender: self)
+            
+            default:
+            break
+        }
     }
 }
 
