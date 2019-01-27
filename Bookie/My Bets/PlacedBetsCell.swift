@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 
 class PlacedBetsCell: UITableViewCell {
-
     @IBOutlet weak var betName: UILabel!
     @IBOutlet weak var betValue: UILabel!
     @IBOutlet weak var totalMoneyBet: UILabel!
@@ -22,7 +21,7 @@ class PlacedBetsCell: UITableViewCell {
         self.betName.text = bet.betName
         self.betValue.text = "Over / Under \(bet.betValue)"
         let betTotal = bet.overMoneyTotal + bet.underMoneyTotal
-        self.totalMoneyBet.text = "\(betTotal)"
+        self.totalMoneyBet.text = "$\(betTotal)"
         
         DispatchQueue.main.async {
             self.contr!.myBetsTableView.reloadData()

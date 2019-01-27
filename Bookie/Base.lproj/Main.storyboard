@@ -39,7 +39,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SHL-dY-amA">
-                                <rect key="frame" x="16" y="259" width="343" height="30"/>
+                                <rect key="frame" x="16" y="273" width="343" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="9z8-wa-S53"/>
                                 </constraints>
@@ -51,13 +51,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name (so we actually know who to pay)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSf-bR-JcX">
-                                <rect key="frame" x="16" y="226" width="343" height="21"/>
+                                <rect key="frame" x="16" y="240" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6bD-sG-IRA">
-                                <rect key="frame" x="16" y="176" width="343" height="30"/>
+                                <rect key="frame" x="16" y="190" width="343" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="PCh-Bo-dsE"/>
                                 </constraints>
@@ -69,48 +69,48 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick A Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPY-6y-6h5">
-                                <rect key="frame" x="16" y="143" width="343" height="21"/>
+                                <rect key="frame" x="16" y="157" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bookie Dice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wb-3t-2w1">
-                                <rect key="frame" x="69" y="58" width="237" height="36"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnP-6R-rMJ">
-                                <rect key="frame" x="229" y="304" width="130" height="30"/>
+                                <rect key="frame" x="229" y="318" width="130" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="2li-le-cko"/>
                                     <constraint firstAttribute="width" constant="130" id="YaO-MT-z3g"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Lets Bet!"/>
                                 <connections>
                                     <action selector="signUpButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rtr-UX-UPe"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookieDiceIcon" translatesAutoresizingMaskIntoConstraints="NO" id="TTx-Gz-Lok">
+                                <rect key="frame" x="122.5" y="40" width="130" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Bh5-Vo-mKs"/>
+                                    <constraint firstAttribute="width" constant="130" id="Pai-Aq-bnC"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6bD-sG-IRA" secondAttribute="trailing" constant="16" id="735-mA-dJ9"/>
+                            <constraint firstItem="TTx-Gz-Lok" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="89N-kJ-bgD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TnP-6R-rMJ" secondAttribute="trailing" constant="16" id="AK5-0b-Voc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SHL-dY-amA" secondAttribute="trailing" constant="16" id="BxV-hJ-rno"/>
                             <constraint firstItem="6bD-sG-IRA" firstAttribute="top" secondItem="UPY-6y-6h5" secondAttribute="bottom" constant="12" id="ERM-zd-Uvc"/>
-                            <constraint firstItem="9wb-3t-2w1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GDy-kH-TEJ"/>
-                            <constraint firstItem="9wb-3t-2w1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="69" id="GKK-yf-3Sd"/>
-                            <constraint firstItem="9wb-3t-2w1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="38" id="Hqe-BX-yAu"/>
-                            <constraint firstItem="UPY-6y-6h5" firstAttribute="top" secondItem="9wb-3t-2w1" secondAttribute="bottom" constant="49" id="JkE-9G-NCI"/>
                             <constraint firstItem="SHL-dY-amA" firstAttribute="top" secondItem="OSf-bR-JcX" secondAttribute="bottom" constant="12" id="OCg-5W-CWl"/>
                             <constraint firstItem="SHL-dY-amA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Oir-a3-lue"/>
                             <constraint firstItem="6bD-sG-IRA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="UdA-KF-YB4"/>
                             <constraint firstItem="TnP-6R-rMJ" firstAttribute="top" secondItem="SHL-dY-amA" secondAttribute="bottom" constant="15" id="Wso-kN-6ua"/>
                             <constraint firstItem="UPY-6y-6h5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ZiO-oE-xcf"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9wb-3t-2w1" secondAttribute="trailing" constant="69" id="dut-Un-hNB"/>
+                            <constraint firstItem="TTx-Gz-Lok" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="lNj-xS-Ipv"/>
                             <constraint firstItem="OSf-bR-JcX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="oUm-yI-nkZ"/>
                             <constraint firstItem="OSf-bR-JcX" firstAttribute="top" secondItem="6bD-sG-IRA" secondAttribute="bottom" constant="20" id="pts-Sc-Vt1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OSf-bR-JcX" secondAttribute="trailing" constant="16" id="qhM-XN-SD5"/>
+                            <constraint firstItem="UPY-6y-6h5" firstAttribute="top" secondItem="TTx-Gz-Lok" secondAttribute="bottom" constant="17" id="tJB-aT-oxt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UPY-6y-6h5" secondAttribute="trailing" constant="16" id="w4R-Nn-jcd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -145,78 +145,83 @@
                                 <rect key="frame" x="0.0" y="229" width="375" height="389"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="placedBets" rowHeight="80" id="TFB-mH-fl4" customClass="PlacedBetsCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="placedBets" rowHeight="100" id="TFB-mH-fl4" customClass="PlacedBetsCell" customModule="Bookie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TFB-mH-fl4" id="4M6-zk-7dS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bet Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCe-yD-o2Y">
-                                                    <rect key="frame" x="15" y="11" width="257" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bet Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wCe-yD-o2Y">
+                                                    <rect key="frame" x="15" y="11" width="350" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bet Value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAb-Rh-MIb">
-                                                    <rect key="frame" x="280" y="11" width="80" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="80" id="Qb0-xF-v7b"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bet Value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAb-Rh-MIb">
+                                                    <rect key="frame" x="15" y="39" width="132" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPw-fm-JAh">
-                                                    <rect key="frame" x="309.5" y="48" width="21" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPw-fm-JAh">
+                                                    <rect key="frame" x="335" y="65" width="25" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Bet:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpr-Jh-I5L">
+                                                    <rect key="frame" x="267" y="68" width="65" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="KPw-fm-JAh" firstAttribute="centerX" secondItem="mAb-Rh-MIb" secondAttribute="centerX" id="4Pf-BC-eed"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wCe-yD-o2Y" secondAttribute="bottom" constant="4" id="53K-dZ-zML"/>
-                                                <constraint firstAttribute="trailing" secondItem="mAb-Rh-MIb" secondAttribute="trailing" constant="15" id="7Wi-py-xCD"/>
-                                                <constraint firstItem="mAb-Rh-MIb" firstAttribute="leading" secondItem="wCe-yD-o2Y" secondAttribute="trailing" constant="8" id="QHd-Bg-MEO"/>
+                                                <constraint firstItem="mAb-Rh-MIb" firstAttribute="leading" secondItem="4M6-zk-7dS" secondAttribute="leading" constant="15" id="74Y-ie-7eq"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="mAb-Rh-MIb" secondAttribute="bottom" constant="4" id="H2q-yP-vTK"/>
+                                                <constraint firstItem="mAb-Rh-MIb" firstAttribute="top" secondItem="wCe-yD-o2Y" secondAttribute="bottom" constant="4" id="O0R-ei-Ki7"/>
+                                                <constraint firstAttribute="trailing" secondItem="wCe-yD-o2Y" secondAttribute="trailing" constant="10" id="SRA-kJ-dmU"/>
                                                 <constraint firstAttribute="bottom" secondItem="KPw-fm-JAh" secondAttribute="bottom" constant="10.5" id="W9f-5r-a1f"/>
+                                                <constraint firstItem="vpr-Jh-I5L" firstAttribute="centerY" secondItem="KPw-fm-JAh" secondAttribute="centerY" id="hGS-7J-2K2"/>
                                                 <constraint firstItem="wCe-yD-o2Y" firstAttribute="top" secondItem="4M6-zk-7dS" secondAttribute="top" constant="11" id="q6N-QV-VHm"/>
+                                                <constraint firstItem="KPw-fm-JAh" firstAttribute="leading" secondItem="vpr-Jh-I5L" secondAttribute="trailing" constant="3" id="qGO-ID-Ev3"/>
                                                 <constraint firstItem="wCe-yD-o2Y" firstAttribute="leading" secondItem="4M6-zk-7dS" secondAttribute="leading" constant="15" id="qH9-33-Kq6"/>
-                                                <constraint firstItem="mAb-Rh-MIb" firstAttribute="top" secondItem="4M6-zk-7dS" secondAttribute="top" constant="11" id="sEE-QG-79z"/>
+                                                <constraint firstAttribute="trailing" secondItem="KPw-fm-JAh" secondAttribute="trailing" constant="15" id="vz7-wn-ydh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="betName" destination="wCe-yD-o2Y" id="Rb8-Mq-oLn"/>
-                                            <outlet property="betValue" destination="mAb-Rh-MIb" id="RUS-lb-Hsn"/>
-                                            <outlet property="totalMoneyBet" destination="KPw-fm-JAh" id="QTm-E1-BW0"/>
+                                            <outlet property="betName" destination="wCe-yD-o2Y" id="UGA-oj-6bl"/>
+                                            <outlet property="betValue" destination="mAb-Rh-MIb" id="wEI-kl-TMj"/>
+                                            <outlet property="totalMoneyBet" destination="KPw-fm-JAh" id="pKg-iS-8t3"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="createdBets" rowHeight="80" id="7r1-nl-hnK" customClass="CreatedBetsCell" customModule="Bookie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="108" width="375" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="createdBets" rowHeight="100" id="7r1-nl-hnK" customClass="CreatedBetsCell" customModule="Bookie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="128" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7r1-nl-hnK" id="KUg-Bh-shK">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bet Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2iS-zv-Fn4">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bet Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2iS-zv-Fn4">
                                                     <rect key="frame" x="15" y="11" width="345" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bet Value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdU-hR-VTx">
-                                                    <rect key="frame" x="135" y="53" width="225" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bet Value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdU-hR-VTx">
+                                                    <rect key="frame" x="15" y="41" width="121" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="SdU-hR-VTx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2iS-zv-Fn4" secondAttribute="bottom" constant="4" id="EoX-mZ-8XW"/>
-                                                <constraint firstAttribute="trailing" secondItem="SdU-hR-VTx" secondAttribute="trailing" constant="15" id="FpY-Gt-E1c"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SdU-hR-VTx" secondAttribute="bottom" constant="8" id="3Bp-09-ery"/>
+                                                <constraint firstItem="SdU-hR-VTx" firstAttribute="top" secondItem="2iS-zv-Fn4" secondAttribute="bottom" constant="6" id="EoX-mZ-8XW"/>
+                                                <constraint firstItem="SdU-hR-VTx" firstAttribute="leading" secondItem="KUg-Bh-shK" secondAttribute="leading" constant="15" id="OE5-JO-qE0"/>
                                                 <constraint firstItem="2iS-zv-Fn4" firstAttribute="leading" secondItem="KUg-Bh-shK" secondAttribute="leading" constant="15" id="OQe-pz-LgH"/>
                                                 <constraint firstAttribute="trailing" secondItem="2iS-zv-Fn4" secondAttribute="trailing" constant="15" id="hOB-bu-iej"/>
-                                                <constraint firstAttribute="bottom" secondItem="SdU-hR-VTx" secondAttribute="bottom" constant="10.5" id="jgZ-XN-wc4"/>
                                                 <constraint firstItem="2iS-zv-Fn4" firstAttribute="top" secondItem="KUg-Bh-shK" secondAttribute="top" constant="11" id="mxz-Ka-Vlf"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -393,6 +398,7 @@
                                     <constraint firstAttribute="height" constant="40" id="CXk-tC-Zi2"/>
                                     <constraint firstAttribute="width" constant="120" id="wqF-pd-P3y"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Create A Bet"/>
                                 <connections>
                                     <action selector="createBetTapped:" destination="Ujy-bN-M9P" eventType="touchUpInside" id="T8B-zR-CPz"/>
@@ -578,6 +584,7 @@
                                     <constraint firstAttribute="height" constant="30" id="KeJ-6y-vcQ"/>
                                     <constraint firstAttribute="width" constant="100" id="t2b-xg-iBV"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Place Bet"/>
                                 <connections>
                                     <action selector="placeBetTapped:" destination="6Gg-Qu-O6B" eventType="touchUpInside" id="Obr-2x-OiC"/>
@@ -737,11 +744,12 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UKG-xc-PIO">
                                 <rect key="frame" x="229" y="430" width="130" height="39"/>
+                                <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="48p-KE-aa5"/>
                                     <constraint firstAttribute="height" constant="39" id="ZCQ-vB-7yZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Create Bet">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -851,6 +859,7 @@
     </scenes>
     <resources>
         <image name="Back" width="20" height="20"/>
+        <image name="BookieDiceIcon" width="304" height="244"/>
         <image name="list_blue" width="25" height="25"/>
         <image name="list_grey" width="25" height="25"/>
         <image name="money_blue" width="17" height="25"/>

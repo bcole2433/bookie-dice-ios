@@ -144,13 +144,6 @@ class FirebaseHelper {
                 "totalUnder" : bet.underMoneyTotal
             ]
 
-//        let userBetData : [String: Any] = [
-//                "userID" : userID,
-//                "totalBet" : totalBet,
-//                "totalOver" : bet.overMoneyTotal,
-//                "totalUnder" : bet.underMoneyTotal
-//        ]
-
         betForBookieRef.document(userID).setData(betData,merge: true) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -168,40 +161,59 @@ class FirebaseHelper {
         completion(createdBets)
     }
     func getUserPlacedBets(userID: String, completion: @escaping ([PlacedBet]) -> Void) {
-        //TODO grab all the bets the user made
+        let myGroup = DispatchGroup()
         var placedBets : [PlacedBet] = []
         let betsList = SocialHelper.sharedSocialHelper().betsList
         for bet in betsList {
-            let placedBetRef = db.collection("Bets").document(bet.betName).collection("placedBets")
-            placedBetRef.getDocuments { (snapshot, err) in
-                if let err = err {
-                    print("\(err.localizedDescription)")
-                } else {
-                    for document in (snapshot?.documents)! {
-                        if document.documentID == self.userID {
-                            print("\(document.documentID) => \(document.data())")
-                            let betName = document.documentID
-                            let bet = document.data()
-                            print(bet)
-                            let betType = bet["betType"] as! String
-                            let betValue = bet["betValue"] as! Double
-                            let bookieusername = bet["bookieUsername"] as! String
-                            let bookieName = bet["bookieName"] as! String
-                            let overValue = bet["overOdds"] as! String
-                            let underValue = bet["underOdds"] as! String
-                            let overMoneyTotal = bet["totalOver"] as! Int
-                            let underMoneyTotal = bet["totalUnder"] as! Int
-                            
-                            
-                            let tempBet = PlacedBet(bookieUsername: bookieusername, bookieName: bookieName, bookieID: userID, betName: betName, betType: betType, betValue: betValue, overValue: overValue, underValue: underValue, overMoneyTotal: overMoneyTotal, underMoneyTotal: underMoneyTotal)
-                            placedBets.append(tempBet)
-                            
-                        }
-                    }
-                }
+            myGroup.enter()
+            let betName = bet.betName
+            getPlacedBets(userID: self.userID!, betName: betName) {
+                bets in
+                placedBets.append(contentsOf: bets)
+                myGroup.leave()
             }
         }
-        
-        completion(placedBets)
+        myGroup.notify(queue: DispatchQueue.global(qos: .default), execute: {
+            SocialHelper.sharedSocialHelper().myBets = placedBets
+            completion(placedBets)
+        })
+    }
+    
+    func getPlacedBets(userID: String, betName: String, completion: @escaping ([PlacedBet]) -> Void) {
+        var placedBets: [PlacedBet] = []
+        let placedBetRef = db.collection("Bets").document(betName).collection("placedBets")
+        placedBetRef.getDocuments { (snapshot, err) in
+            if let err = err {
+                print("\(err.localizedDescription)")
+                completion(placedBets)
+            } else {
+                for document in (snapshot?.documents)! {
+                    print("\(document.documentID) and \((self.userID)!)")
+                    if document.documentID.contains(self.userID!) {
+                        print("DocumentID and userID matches")
+                        
+                        print("\(document.documentID) => \(document.data())")
+                        let bet = document.data()
+                        let betName = betName
+                        let betType = bet["betType"] as! String
+                        let betValue = bet["betValue"] as! Double
+                        let bookieusername = bet["bookieUsername"] as! String
+                        let bookieName = bet["bookieName"] as! String
+                        let overValue = bet["overOdds"] as! String
+                        let underValue = bet["underOdds"] as! String
+                        let overMoneyTotal = bet["totalOver"] as! Int
+                        let underMoneyTotal = bet["totalUnder"] as! Int
+                        
+                        
+                        let tempBet = PlacedBet(bookieUsername: bookieusername, bookieName: bookieName, bookieID: userID, betName: betName, betType: betType, betValue: betValue, overValue: overValue, underValue: underValue, overMoneyTotal: overMoneyTotal, underMoneyTotal: underMoneyTotal)
+                        print("The tempBet is \(tempBet)")
+                        placedBets.append(tempBet)
+                    } else {
+                        print("The documentID and UserID does not match")
+                    }
+                }
+                completion(placedBets)
+            }
+        }
     }
 }

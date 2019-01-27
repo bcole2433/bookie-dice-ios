@@ -33,8 +33,9 @@ class MyBetsView: UIViewController {
     func setUpView() {
         myBetsTableView.delegate = self
         myBetsTableView.dataSource = self
-        myBetsTableView.estimatedRowHeight = 80
+        myBetsTableView.estimatedRowHeight = 100
         myBetsTableView.rowHeight = UITableView.automaticDimension
+        addImageTitle()
         getPlacedBets()
         getCreatedBets()
         
@@ -47,8 +48,18 @@ class MyBetsView: UIViewController {
             self.myBetsTableView.reloadData()
         }
     }
+    
+    func addImageTitle() {
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .scaleAspectFill
+        let logo = UIImage(named: "bookieappiconround")
+        imageView.image = logo
+        self.navigationItem.titleView = imageView
+    }
 
     func getPlacedBets() {
+        if helper.myBets.count == 0 {
         FirebaseHelper().getUserPlacedBets(userID: userID!) {
             bets in
             self.placedBets = bets
@@ -56,7 +67,13 @@ class MyBetsView: UIViewController {
                 self.myBetsTableView.reloadData()
                 }
             }
+        } else {
+            self.placedBets = helper.myBets
+            DispatchQueue.main.async {
+                self.myBetsTableView.reloadData()
+            }
         }
+    }
         
     func getCreatedBets() {
         FirebaseHelper().getUserCreatedBets(userID: userID!) {
@@ -99,7 +116,7 @@ extension MyBetsView: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 80
+        return 100
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -52,12 +52,38 @@ class ProtectedViewController: UIViewController {
     }
     
     func setUpBetsList() {
+        let myGroup = DispatchGroup()
+        let userID = Auth.auth().currentUser?.uid
+        
+        myGroup.enter()
         FirebaseHelper().loadAllBets() {
             bets in
             print("The bet count is \(bets.count)")
             SocialHelper.sharedSocialHelper().betsList = bets
+            myGroup.leave()
+         //   self.performSegue(withIdentifier: "toHome", sender: self)
+        }
+
+//            myGroup.enter()
+//        FirebaseHelper().getUserPlacedBets(userID: userID!) {
+//            bets in
+//            print( "The user has \(bets.count) placed bets")
+//            SocialHelper.sharedSocialHelper().myBets = bets
+//            myGroup.leave()
+//        }
+        
+        myGroup.notify(queue: DispatchQueue.main, execute: {
             self.performSegue(withIdentifier: "toHome", sender: self)
-         //   self.performSegue(withIdentifier: "ToBetsList", sender: self)
+        })
+        
+    }
+    
+    func getUserPlacedBets() {
+        let userID = Auth.auth().currentUser?.uid
+        FirebaseHelper().getUserPlacedBets(userID: userID!) {
+            bets in
+            print( "The user has \(bets.count) placed bets")
+            SocialHelper.sharedSocialHelper().myBets = bets
         }
     }
 

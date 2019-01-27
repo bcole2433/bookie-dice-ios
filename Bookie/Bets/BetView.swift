@@ -39,7 +39,7 @@ class BetView: UIViewController {
         self.betValue.text = "\(String(describing: bet!.betValue))"
         self.betOdds.text = "Over: \(bet!.overValue) | Under: \(bet!.underValue)"
         
-        self.placeBetButton.layer.backgroundColor = UIColor.blue.cgColor
+        self.placeBetButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1).cgColor
         self.placeBetButton.setTitleColor(.white, for: UIControl.State())
         self.placeBetButton.titleLabel?.textColor = .white
         self.placeBetButton.layer.borderWidth = 0
@@ -81,7 +81,8 @@ class BetView: UIViewController {
         }
         
         let tempBet = PlacedBet(bookieUsername: (bet?.bookieUsername)!, bookieName: (bet?.bookieName)!, bookieID: self.userID!, betName: (bet?.betName)!, betType: (bet?.betType)!, betValue: (bet?.betValue)!, overValue: (bet?.overValue)!, underValue: (bet?.underValue)!, overMoneyTotal: overValue, underMoneyTotal: underValue)
-        
+        var placedBets = SocialHelper.sharedSocialHelper().myBets
+        placedBets.append(tempBet)
         FirebaseHelper().addUserBetToFirebase(userID: userID!, bet: tempBet)
         
         

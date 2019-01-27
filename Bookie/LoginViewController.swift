@@ -22,10 +22,10 @@ class LoginViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        self.signUpButton.layer.backgroundColor = UIColor.clear.cgColor
-        self.signUpButton.setTitleColor(UIColor.lightText, for: UIControl.State())
-        self.signUpButton.layer.borderColor = UIColor.lightGray.cgColor
-        self.signUpButton.layer.borderWidth = 1
+        self.signUpButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1).cgColor
+        self.signUpButton.setTitleColor(UIColor.white, for: UIControl.State())
+//        self.signUpButton.layer.borderColor = UIColor.lightGray.cgColor
+//        self.signUpButton.layer.borderWidth = 1
         self.signUpButton.layer.cornerRadius = 10
     }
     
@@ -39,11 +39,6 @@ class LoginViewController: UIViewController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
-        self.signUpButton.layer.backgroundColor = UIColor.blue.cgColor
-        self.signUpButton.setTitleColor(.white, for: UIControl.State())
-        self.signUpButton.titleLabel?.textColor = .white
-        self.signUpButton.layer.borderWidth = 0
-        self.signUpButton.layer.cornerRadius = 10
     }
 
     @IBAction func userNameChanged(_ sender: Any) {
@@ -67,7 +62,6 @@ class LoginViewController: UIViewController {
             if bets.count != 0 {
             print("The bet count is \(bets.count)")
             SocialHelper.sharedSocialHelper().betsList = bets
-  //         self.performSegue(withIdentifier: "loginToBetsList", sender: self)
             self.performSegue(withIdentifier: "loginToHome", sender: self)
                 
             } else {

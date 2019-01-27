@@ -26,18 +26,27 @@ class OverUnderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addImageTitle()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.createBetButton.layer.backgroundColor = UIColor.blue.cgColor
+        self.createBetButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1).cgColor
         self.createBetButton.setTitleColor(.white, for: UIControl.State())
         self.createBetButton.titleLabel?.textColor = .white
         self.createBetButton.layer.borderWidth = 0
         self.createBetButton.layer.cornerRadius = 10
        // self.nameTextField.isFirstResponder
+    }
+    
+    func addImageTitle() {
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .scaleAspectFill
+        let logo = UIImage(named: "bookieappiconround")
+        imageView.image = logo
+        self.navigationItem.titleView = imageView
     }
     
     @objc internal func dismissAlertController(alertController: UIAlertController) {
@@ -61,7 +70,7 @@ class OverUnderViewController: UIViewController {
         let tempBet = CreatedBet(bookieUsername: userName, bookieName: name, bookieID: self.userID!, betName: betName!,betType: betType, betValue: betValue, overValue: overValue!, underValue: underValue!)
         
         print(tempBet)
-        
+        helper.betsList.append(tempBet)
         FirebaseHelper().sendCreatedBetToFirebase(userID: userID!, bet: tempBet)
         
         let  alertConfirm = UIAlertController(title: "Bet Created", message: "", preferredStyle: UIAlertController.Style.alert)

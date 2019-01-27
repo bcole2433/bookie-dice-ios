@@ -18,6 +18,7 @@ class BetsListViewController: UIViewController {
     
     override func viewDidLoad() {
         self.bets = SocialHelper.sharedSocialHelper().betsList
+        addImageTitle()
         setupBetListTable()
         self.betsListTableView.reloadData()
         super.viewDidLoad()
@@ -25,11 +26,22 @@ class BetsListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.bets = SocialHelper.sharedSocialHelper().betsList
+        setupBetListTable()
         
         DispatchQueue.main.async {
             self.betsListTableView.reloadData()
         }
         super.viewWillAppear(animated)
+    }
+    
+    func addImageTitle() {
+
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .scaleAspectFill
+        let logo = UIImage(named: "bookieappiconround")
+        imageView.image = logo
+        self.navigationItem.titleView = imageView
     }
     
     func setupBetListTable() {
@@ -38,7 +50,7 @@ class BetsListViewController: UIViewController {
         betsListTableView.estimatedRowHeight = 150
         betsListTableView.rowHeight = UITableView.automaticDimension
         
-        self.createBetButton.layer.backgroundColor = UIColor.blue.cgColor
+        self.createBetButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1).cgColor
         self.createBetButton.setTitleColor(.white, for: UIControl.State())
         self.createBetButton.titleLabel?.textColor = .white
         self.createBetButton.layer.borderWidth = 0
