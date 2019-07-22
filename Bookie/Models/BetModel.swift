@@ -9,6 +9,22 @@
 import Foundation
 import UIKit
 
+struct User {
+    let userID: String
+    let username: String
+    let name: String
+}
+
+struct UserWithBets {
+    let userID: String
+    let username: String
+    let name: String
+    let totalBets: Int
+    let totalBetsWon: Int
+    let totalMoney: Int
+    
+}
+
 struct CreatedBet {
     let bookieUsername: String
     let bookieName: String
@@ -18,9 +34,12 @@ struct CreatedBet {
     let betValue: Double
     let overValue: String
     let underValue: String
+    let placedBets : [PlacedBet]?
 }
 
 struct PlacedBet {
+    let betterName: String
+    let betterUserName: String
     let bookieUsername: String
     let bookieName: String
     let bookieID: String

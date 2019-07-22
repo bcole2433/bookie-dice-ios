@@ -29,7 +29,18 @@ class BetView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBet()
+        self.hideKeyboard()
+        
+        self.placeBetButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1).cgColor
+        self.placeBetButton.setTitleColor(.white, for: UIControl.State())
+        self.placeBetButton.titleLabel?.textColor = .white
+        self.placeBetButton.layer.borderWidth = 0
+        self.placeBetButton.layer.cornerRadius = 10
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     func configureBet() {
@@ -37,15 +48,91 @@ class BetView: UIViewController {
         self.bookieName.text = bet?.bookieName
         self.betName.text = bet!.betName
         self.betValue.text = "\(String(describing: bet!.betValue))"
-        self.betOdds.text = "Over: \(bet!.overValue) | Under: \(bet!.underValue)"
-        
-        self.placeBetButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1).cgColor
-        self.placeBetButton.setTitleColor(.white, for: UIControl.State())
-        self.placeBetButton.titleLabel?.textColor = .white
-        self.placeBetButton.layer.borderWidth = 0
-        self.placeBetButton.layer.cornerRadius = 10
-        
+//        self.betOdds.text = "Over: \(bet!.overValue) | Under: \(bet!.underValue)"
+
     }
+    
+    func checkBetTime() {
+        let superBowlTime = "2019-02-03 22:30:00"
+        let currentDateTime = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        formatter.string(from: currentDateTime)
+        print(currentDateTime)
+        print(superBowlTime)
+        let dateString = "\(currentDateTime)"
+        
+        switch dateString.compare(superBowlTime) {
+        case .orderedAscending:
+            print("\(dateString) is earlier than \(superBowlTime)")
+            //MARK: User allowed to bet
+            let defaults = UserDefaults.standard
+            let betterName = defaults.object(forKey: "Name") as! String
+            let betterUserName = defaults.object(forKey: "UserName") as! String
+            
+            var overValue = 0
+            if let overVal = Int(overTextField.text!) {
+                overValue = overVal
+            } else {
+                print("Not a valid number: \(overTextField.text!)")
+                overValue = 0
+            }
+            
+            var underValue = 0
+            if let underVal = Int(underTextField.text!) {
+                underValue = underVal
+            } else {
+                print("Not a valid number: \(underTextField.text!)")
+                underValue = 0
+            }
+            
+            if overTextField.text != "" {
+                self.totalBet = overValue
+            } else {
+                self.totalBet = underValue
+            }
+            
+            let tempBet = PlacedBet(betterName: betterName, betterUserName: betterUserName, bookieUsername: (bet?.bookieUsername)!, bookieName: (bet?.bookieName)!, bookieID: self.userID!, betName: (bet?.betName)!, betType: (bet?.betType)!, betValue: (bet?.betValue)!, overValue: (bet?.overValue)!, underValue: (bet?.underValue)!, overMoneyTotal: overValue, underMoneyTotal: underValue)
+            var placedBets = SocialHelper.sharedSocialHelper().myBets
+            placedBets.append(tempBet)
+            FirebaseHelper().addUserBetToFirebase(userID: userID!, bet: tempBet)
+            
+            
+            let  alertConfirm = UIAlertController(title: "Bet Placed", message: "", preferredStyle: UIAlertController.Style.alert)
+            self.present(alertConfirm, animated: true) {
+                self.perform(#selector(BetView.dismissAlertController(alertController:)), with: alertConfirm, afterDelay: 0.5)
+            }
+            
+            
+        case .orderedDescending:
+            print("\(dateString) is later than \(superBowlTime)")
+            let  alertConfirm = UIAlertController(title: "Not So Fast", message: "Bets are disabled during the game, you cheater.", preferredStyle: UIAlertController.Style.alert)
+            self.present(alertConfirm, animated: true) {
+                self.perform(#selector(BetView.dismissAlertController(alertController:)), with: alertConfirm, afterDelay: 3)
+            }
+        case .orderedSame:
+            print("same time")
+            let  alertConfirm = UIAlertController(title: "Not So Fast", message: "Bets are disabled during the game, you cheater.", preferredStyle: UIAlertController.Style.alert)
+            self.present(alertConfirm, animated: true) {
+                self.perform(#selector(BetView.dismissAlertController(alertController:)), with: alertConfirm, afterDelay: 3)
+            }
+        }
+    }
+    
+    func hideKeyboard()
+        {
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+                target: self,
+                action: #selector(self.dismissKeyboard))
+    
+            tap.cancelsTouchesInView = false
+            view.addGestureRecognizer(tap)
+        }
+    
+        @objc func dismissKeyboard()
+        {
+            view.endEditing(true)
+        }
     
     @objc internal func dismissAlertController(alertController: UIAlertController) {
         alertController.dismiss(animated: true, completion: nil)
@@ -55,41 +142,7 @@ class BetView: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func placeBetTapped(_ sender: Any) {
-//        let userName = defaults.object(forKey: "UserName") as! String
-//        let name = defaults.object(forKey: "Name") as! String
-        
-        var overValue = 0
-        if let overVal = Int(overTextField.text!) {
-            overValue = overVal
-        } else {
-            print("Not a valid number: \(overTextField.text!)")
-            overValue = 0
-        }
-        
-        var underValue = 0
-        if let underVal = Int(underTextField.text!) {
-            underValue = underVal
-        } else {
-            print("Not a valid number: \(underTextField.text!)")
-            underValue = 0
-        }
-        
-        if overTextField.text != "" {
-            self.totalBet = overValue
-        } else {
-            self.totalBet = underValue
-        }
-        
-        let tempBet = PlacedBet(bookieUsername: (bet?.bookieUsername)!, bookieName: (bet?.bookieName)!, bookieID: self.userID!, betName: (bet?.betName)!, betType: (bet?.betType)!, betValue: (bet?.betValue)!, overValue: (bet?.overValue)!, underValue: (bet?.underValue)!, overMoneyTotal: overValue, underMoneyTotal: underValue)
-        var placedBets = SocialHelper.sharedSocialHelper().myBets
-        placedBets.append(tempBet)
-        FirebaseHelper().addUserBetToFirebase(userID: userID!, bet: tempBet)
-        
-        
-        let  alertConfirm = UIAlertController(title: "Bet Placed", message: "", preferredStyle: UIAlertController.Style.alert)
-        self.present(alertConfirm, animated: true) {
-            self.perform(#selector(BetView.dismissAlertController(alertController:)), with: alertConfirm, afterDelay: 0.5)
-        }
+        checkBetTime()
     }
     
 }

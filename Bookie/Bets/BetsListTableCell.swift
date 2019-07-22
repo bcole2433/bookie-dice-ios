@@ -14,6 +14,7 @@ class BetsListTableCell: UITableViewCell {
     @IBOutlet weak var bookieName: UILabel!
     @IBOutlet weak var betName: UILabel!
     @IBOutlet weak var betValue: UILabel!
+    @IBOutlet weak var bookieStar: UIImageView!
     var bet: CreatedBet?
     var contr : BetsListViewController? = nil
     
@@ -22,9 +23,9 @@ class BetsListTableCell: UITableViewCell {
         self.bookieName.text = bet.bookieName
         self.betName.text = bet.betName
         self.betValue.text = "\(bet.betValue)"
-        
-        DispatchQueue.main.async {
-            self.contr!.betsListTableView.reloadData()
+        if bet.bookieID.contains("YQGJMvHoGkT83cx6gdW1lx5eHF43") {
+            print("Bookie Dice bet")
+            self.bookieStar.isHidden = false
         }
     }
     

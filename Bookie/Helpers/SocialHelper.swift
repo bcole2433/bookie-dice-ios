@@ -12,12 +12,13 @@ import Firebase
 import FirebaseAuth
 
 
-//methods to work with social networks
 class SocialHelper {
     var userName : String?
     var name : String?
+    var users : [User] = []
     var betsList : [CreatedBet] = []
     var myBets : [PlacedBet] = []
+    var placedBetsDict : [String: [PlacedBet]] = [:]
     fileprivate static var info: SocialHelper?
     
     class func sharedSocialHelper() -> SocialHelper {

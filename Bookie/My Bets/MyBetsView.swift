@@ -31,14 +31,18 @@ class MyBetsView: UIViewController {
         setUpView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        getCreatedBets()
+        getPlacedBets()
+        super.viewWillAppear(animated)
+    }
+    
     func setUpView() {
         myBetsTableView.delegate = self
         myBetsTableView.dataSource = self
         myBetsTableView.estimatedRowHeight = 100
         myBetsTableView.rowHeight = UITableView.automaticDimension
         addImageTitle()
-        getPlacedBets()
-        getCreatedBets()
         
         let userName = defaults.object(forKey: "UserName") as! String
         let name = defaults.object(forKey: "Name") as! String
@@ -51,7 +55,6 @@ class MyBetsView: UIViewController {
     }
     
     func addImageTitle() {
-        
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFill
         let logo = UIImage(named: "bookieappiconround")
@@ -113,9 +116,17 @@ extension MyBetsView: UITableViewDataSource, UITableViewDelegate {
         var returnValue = 0
         switch(self.segmentedControl.selectedSegmentIndex){
         case 0:
-            returnValue = self.placedBets != nil ? self.placedBets.count : 0
+            if self.placedBets != nil {
+            returnValue = self.placedBets.count
+            } else {
+                returnValue = 0
+            }
         case 1:
-            returnValue = self.createdBets != nil ? self.createdBets.count : 0
+            if self.createdBets != nil {
+            returnValue = self.createdBets.count
+            } else {
+                returnValue = 0
+            }
         default:
             break
         }

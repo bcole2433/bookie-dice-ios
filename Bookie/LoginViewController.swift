@@ -24,8 +24,6 @@ class LoginViewController: UIViewController {
         
         self.signUpButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1).cgColor
         self.signUpButton.setTitleColor(UIColor.white, for: UIControl.State())
-//        self.signUpButton.layer.borderColor = UIColor.lightGray.cgColor
-//        self.signUpButton.layer.borderWidth = 1
         self.signUpButton.layer.cornerRadius = 10
     }
     

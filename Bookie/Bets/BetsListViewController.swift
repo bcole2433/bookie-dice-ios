@@ -12,6 +12,7 @@ import Firebase
 class BetsListViewController: UIViewController {
     @IBOutlet weak var betsListTableView: UITableView!
     @IBOutlet weak var createBetButton: UIButton!
+    @IBOutlet weak var leaderBoardButton: UIButton!
     
     var bets : [CreatedBet]?
     var selectedBet : CreatedBet?
@@ -20,7 +21,6 @@ class BetsListViewController: UIViewController {
         self.bets = SocialHelper.sharedSocialHelper().betsList
         addImageTitle()
         setupBetListTable()
-        self.betsListTableView.reloadData()
         super.viewDidLoad()
     }
     
@@ -28,10 +28,6 @@ class BetsListViewController: UIViewController {
         super.viewWillAppear(animated)
         self.bets = SocialHelper.sharedSocialHelper().betsList
         setupBetListTable()
-        
-        DispatchQueue.main.async {
-            self.betsListTableView.reloadData()
-        }
         super.viewWillAppear(animated)
     }
     
@@ -49,12 +45,16 @@ class BetsListViewController: UIViewController {
         betsListTableView.dataSource = self
         betsListTableView.estimatedRowHeight = 150
         betsListTableView.rowHeight = UITableView.automaticDimension
-        
-        self.createBetButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1).cgColor
+
+        self.createBetButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 0.9).cgColor
         self.createBetButton.setTitleColor(.white, for: UIControl.State())
         self.createBetButton.titleLabel?.textColor = .white
         self.createBetButton.layer.borderWidth = 0
         self.createBetButton.layer.cornerRadius = 10
+        
+        self.leaderBoardButton.layer.backgroundColor = UIColor(red: 243/255.0, green: 243/255.0, blue: 243/255.0, alpha: 1.0).cgColor
+        self.leaderBoardButton.setTitleColor(.darkGray, for: UIControl.State())
+        self.leaderBoardButton.layer.cornerRadius = 15
         
         DispatchQueue.main.async {
             self.betsListTableView.reloadData()
@@ -68,6 +68,10 @@ class BetsListViewController: UIViewController {
     }
 
 
+    @IBAction func leaderboardButtonTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "toLeaderboard", sender: self)
+        
+    }
     @IBAction func createBetTapped(_ sender: Any) {
         guard let overUnderView  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "overUnderView") as? OverUnderViewController else {
             print("Could not instantiate card back full vc")
@@ -109,14 +113,26 @@ extension BetsListViewController: UITableViewDataSource, UITableViewDelegate {
         return UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = betsListTableView.dequeueReusableCell(withIdentifier: "betListViewCell", for: indexPath) as? BetsListTableCell
         let bet = bets![indexPath.item]
         cell!.contr = self
         cell!.bet = bet
+        let bookieDice = "YQGJMvHoGkT83cx6gdW1lx5eHF43"
+        if bet.bookieID != bookieDice {
+            print("Not a Bookie Dice bet")
+            cell!.bookieStar.isHidden = true
+        }
         cell!.updateCell(bet: bet)
-
-        
         return cell!
     }
     

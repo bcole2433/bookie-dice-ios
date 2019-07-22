@@ -30,8 +30,9 @@ class ProtectedViewController: UIViewController {
             let user = authResult!.user
             let isAnonymous = user.isAnonymous  // true
             let uid = user.uid
+            self.performSegue(withIdentifier: "toSignup", sender: self)
         }
-        self.performSegue(withIdentifier: "toSignup", sender: self)
+
     }
     
     func checkUsername() {
@@ -61,21 +62,18 @@ class ProtectedViewController: UIViewController {
             print("The bet count is \(bets.count)")
             SocialHelper.sharedSocialHelper().betsList = bets
             myGroup.leave()
-         //   self.performSegue(withIdentifier: "toHome", sender: self)
         }
-
-//            myGroup.enter()
-//        FirebaseHelper().getUserPlacedBets(userID: userID!) {
-//            bets in
-//            print( "The user has \(bets.count) placed bets")
-//            SocialHelper.sharedSocialHelper().myBets = bets
-//            myGroup.leave()
-//        }
+        
+        myGroup.enter()
+        FirebaseHelper().getUsers() {
+            users in
+            SocialHelper.sharedSocialHelper().users = users
+            myGroup.leave()
+        }
         
         myGroup.notify(queue: DispatchQueue.main, execute: {
             self.performSegue(withIdentifier: "toHome", sender: self)
         })
-        
     }
     
     func getUserPlacedBets() {

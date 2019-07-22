@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     override init() {
         super.init()
+        //**set up your firebase firestor here**
         FirebaseApp.configure()
+        let db = Firestore.firestore()
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -28,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-       let db = Firestore.firestore()
+     //  let db = Firestore.firestore()
         return true
     }
 

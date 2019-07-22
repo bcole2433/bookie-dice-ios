@@ -14,23 +14,18 @@ class FirebaseHelper {
     let db = Firestore.firestore()
     let socHelper = SocialHelper.sharedSocialHelper()
     let userID = Auth.auth().currentUser?.uid
+    let defaults = UserDefaults.standard
     
     func addUserNameAndName(userName: String, name: String) {
         
         if  let userID = Auth.auth().currentUser?.uid {
             let usersRef = db.collection("users")
-            let ID = ["ID" : userID]
-            let firUserName = ["UserName" : userName]
-            let firName = ["Name" : name]
-            
             
             // Add a new document with a generated ID
             let userData : [String: Any] = [
-                "\(userID)" : [
-                    ID,
-                    firUserName,
-                    firName
-                ]
+                "ID" : userID,
+                "UserName" : userName,
+                "Name" : name
             ]
             usersRef.document(userID).setData(userData)
         }
@@ -38,6 +33,7 @@ class FirebaseHelper {
     
     func loadAllBets(completion: @escaping ([CreatedBet])-> Void) {
         var bets : [CreatedBet] = []
+        var placedBets : [PlacedBet] = []
         let betListRef = db.collection("Bets")
         let userID = Auth.auth().currentUser?.uid
         
@@ -51,16 +47,20 @@ class FirebaseHelper {
                     print("\(document.documentID) => \(document.data())")
                         let betName = document.documentID
                         let bet = document.data()
-                    print(bet)
                         let betType = bet["betType"] as! String
                         let betValue = bet["betValue"] as! Double
+                        let ubookieID = bet["bookieID"] as! String
                         let bookieuserName = bet["bookieUsername"] as! String
                         let bookieName = bet["bookieName"] as! String
                         let overValue = bet["overOdds"] as! String
                         let underValue = bet["underOdds"] as! String
+                    
+                    self.getBettersInCreatedBet(betName: betName) {
+                        tPlacedBets in
+                        placedBets = tPlacedBets
+                    }
 
-
-                    let tempBet = CreatedBet(bookieUsername: bookieuserName, bookieName: bookieName, bookieID: userID!, betName: betName, betType: betType, betValue: betValue, overValue: overValue, underValue: underValue)
+                    let tempBet = CreatedBet(bookieUsername: bookieuserName, bookieName: bookieName, bookieID: ubookieID, betName: betName, betType: betType, betValue: betValue, overValue: overValue, underValue: underValue, placedBets: placedBets)
                     bets.append(tempBet)
                 }
                 SocialHelper().betsList = bets
@@ -129,8 +129,13 @@ class FirebaseHelper {
             totalBet = bet.overMoneyTotal
         }
         let betName = bet.betName
+        let defaults = UserDefaults.standard
+        let betterUserName = defaults.object(forKey: "UserName") as! String
+        let betterName = defaults.object(forKey: "Name") as! String
         let betData : [String: Any] = [
                 "userID": userID,
+                "betterUserName": betterUserName,
+                "betterName": betterName,
                 "betName" : betName,
                 "betType": bet.betType,
                 "betValue": bet.betValue,
@@ -157,7 +162,8 @@ class FirebaseHelper {
     func getUserCreatedBets(userID: String, completion: @escaping ([CreatedBet]) -> Void) {
         var createdBets : [CreatedBet] = []
         let betsList = SocialHelper.sharedSocialHelper().betsList
-        createdBets = (betsList.filter{($0.bookieID == userID)})
+        let userName = defaults.object(forKey: "UserName") as! String
+        createdBets = (betsList.filter{($0.bookieUsername == userName)})
         completion(createdBets)
     }
     func getUserPlacedBets(userID: String, completion: @escaping ([PlacedBet]) -> Void) {
@@ -195,6 +201,14 @@ class FirebaseHelper {
                         print("\(document.documentID) => \(document.data())")
                         let bet = document.data()
                         let betName = betName
+                        var betterUserName = ""
+                        var betterName = "Dice"
+                        if let betVal = bet["betterName"] as? String {
+                            betterName = betVal
+                        }
+                        if let uVal = bet["betterUserName"] as? String {
+                            betterUserName = uVal
+                        }
                         let betType = bet["betType"] as! String
                         let betValue = bet["betValue"] as! Double
                         let bookieusername = bet["bookieUsername"] as! String
@@ -205,7 +219,7 @@ class FirebaseHelper {
                         let underMoneyTotal = bet["totalUnder"] as! Int
                         
                         
-                        let tempBet = PlacedBet(bookieUsername: bookieusername, bookieName: bookieName, bookieID: userID, betName: betName, betType: betType, betValue: betValue, overValue: overValue, underValue: underValue, overMoneyTotal: overMoneyTotal, underMoneyTotal: underMoneyTotal)
+                        let tempBet = PlacedBet(betterName: betterName, betterUserName: betterUserName, bookieUsername: bookieusername, bookieName: bookieName, bookieID: userID, betName: betName, betType: betType, betValue: betValue, overValue: overValue, underValue: underValue, overMoneyTotal: overMoneyTotal, underMoneyTotal: underMoneyTotal)
                         print("The tempBet is \(tempBet)")
                         placedBets.append(tempBet)
                     } else {
@@ -222,6 +236,70 @@ class FirebaseHelper {
         let betRef = db.collection("Bets").document(betName)
         let data = ["finalValue" : finalValue]
         betRef.updateData(data)
+    }
+    
+    
+    func getBettersInCreatedBet(betName: String, completion: @escaping ([PlacedBet]) -> Void) {
+        let betRef = db.collection("Bets").document(betName)
+        var placedBets : [PlacedBet] = []
+        betRef.collection("placedBets").getDocuments { (snapshot, err) in
+            if let err = err {
+                print("\(err.localizedDescription)")
+                completion(placedBets)
+            } else {
+                for document in (snapshot?.documents)! {
+                        
+                        print("\(document.documentID) => \(document.data())")
+                        let bet = document.data()
+                        let betName = betName
+                        var betterName = "Anon"
+                        var betterUserName = ""
+                        if let betVal = bet["betterName"] as? String {
+                            betterName = betVal
+                        }
+                        if let uVal = bet["betterUserName"] as? String {
+                            betterUserName = uVal
+                        }
+                        let betType = bet["betType"] as! String
+                        let betValue = bet["betValue"] as! Double
+                        let bookieusername = bet["bookieUsername"] as! String
+                        let bookieName = bet["bookieName"] as! String
+                        let bookieID = bet["bookieID"] as! String
+                        let overValue = bet["overOdds"] as! String
+                        let underValue = bet["underOdds"] as! String
+                        let overMoneyTotal = bet["totalOver"] as! Int
+                        let underMoneyTotal = bet["totalUnder"] as! Int
+                        
+                        let tempBet = PlacedBet(betterName: betterName, betterUserName: betterUserName, bookieUsername: bookieusername, bookieName: bookieName, bookieID: bookieID, betName: betName, betType: betType, betValue: betValue, overValue: overValue, underValue: underValue, overMoneyTotal: overMoneyTotal, underMoneyTotal: underMoneyTotal)
+                        print("The tempBet is \(tempBet)")
+                        placedBets.append(tempBet)
+                }
+                completion(placedBets)
+            }
+        }
+    }
+    
+    func getUsers(completion: @escaping ([User]) -> Void) {
+        let usersRef = db.collection("users")
+        var users : [User] = []
         
+        usersRef.getDocuments { (snapshot, err) in
+            if let err = err {
+                print("\(err.localizedDescription)")
+                completion(users)
+            } else {
+                for document in (snapshot?.documents)! {
+                    let user = document.data()
+                    let userID = document.documentID
+                    
+                        let username = user["UserName"] as! String
+                        let name = user["Name"] as! String
+                        let tempUser = User(userID: userID, username: username, name: name)
+                        users.append(tempUser)
+
+                }
+                completion(users)
+            }
+        }
     }
 }
